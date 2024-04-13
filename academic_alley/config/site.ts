@@ -19,6 +19,35 @@ export const siteConfig = {
 	// Account Icon / Login (if not logged in)
 	//		View Account
 	//		Sign Out
+
+	navDropdowns: [
+		{
+			label: "Involvement",
+			pages: [
+				{
+					label: "Events",
+					href: "/events"
+				},
+				{
+					label: "Election",
+					href: "/election"
+				},
+			]
+		},
+		{
+			label: "Connections",
+			pages: [
+				{
+					label: "Students and Faculty",
+					href: "/students_and_faculty"
+				},
+				{
+					label: "Roommate Search",
+					href: "/roommate_search"
+				},
+			]
+		},
+	],
 	navItems: [
 		{
 			label: "Involvement",
@@ -83,6 +112,6 @@ export const siteConfig = {
 		twitter: "https://twitter.com/getnextui",
 		docs: "https://nextui.org",
 		discord: "https://discord.gg/9b6yyZKmH4",
-    sponsor: "https://patreon.com/jrgarciadev"
+		sponsor: "https://patreon.com/jrgarciadev"
 	},
 };
