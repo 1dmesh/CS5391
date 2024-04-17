@@ -70,8 +70,7 @@ export const siteConfig = {
 			href: "/transportation",
 		}
 	],
-	navMenuItems: [],
-	/*
+	// navMenuItems: [],
 	navMenuItems: [
 		{
 			label: "Profile",
@@ -106,7 +105,6 @@ export const siteConfig = {
 			href: "/logout",
 		},
 	],
-	*/
 	links: {
 		github: "https://github.com/nextui-org/nextui",
 		twitter: "https://twitter.com/getnextui",
