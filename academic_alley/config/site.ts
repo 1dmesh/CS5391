@@ -29,8 +29,8 @@ export const siteConfig = {
 					href: "/events"
 				},
 				{
-					label: "Election",
-					href: "/election"
+					label: "Elections",
+					href: "/elections"
 				},
 			]
 		},
@@ -39,24 +39,16 @@ export const siteConfig = {
 			pages: [
 				{
 					label: "Students and Faculty",
-					href: "/students_and_faculty"
+					href: "/people"
 				},
 				{
-					label: "Roommate Search",
-					href: "/roommate_search"
+					label: "Roommates",
+					href: "/roommates"
 				},
 			]
 		},
 	],
 	navItems: [
-		{
-			label: "Involvement",
-			href: "/involvement",
-		},
-		{
-			label: "Connections",
-			href: "/connections",
-		},
 		{
 			label: "Textbooks",
 			href: "/textbooks",
@@ -71,6 +63,8 @@ export const siteConfig = {
 		}
 	],
 	// navMenuItems: [],
+  // TODO: these appear in the popup menu on the right of the navbar
+  // consider making these identical to the navbar or removing the menu entirely
 	navMenuItems: [
 		{
 			label: "Profile",
