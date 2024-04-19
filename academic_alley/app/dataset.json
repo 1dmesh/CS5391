@@ -1,0 +1,14 @@
+{
+  "textbooks": [
+    {
+      "title": "book1",
+      "author": "author1",
+      "price": 109.99
+    },
+    {
+      "title": "book2",
+      "author": "author2",
+      "price": 259.99
+    }
+  ]
+}
