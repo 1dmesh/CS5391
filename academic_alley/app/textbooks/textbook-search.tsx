@@ -18,8 +18,9 @@ export default function TextbookSearch({ defaultValue }: iDefault) {
   };
 
   const handleSearch = () => {
-    if (inputValue) return router.push(`/?q=${inputValue}`);
-    if (!inputValue) return router.push("/");
+    // TODO: pass in or query the base URL to make this entire component usable by all searches
+    if (inputValue) return router.push(`/textbooks/?q=${inputValue}`);
+    if (!inputValue) return router.push("/textbooks/");
   };
 
   const handleKeyPress = (event: { key: any }) => {
