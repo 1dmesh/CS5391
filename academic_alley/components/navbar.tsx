@@ -71,7 +71,7 @@ export const Navbar = () => {
           </NextLink>
         </NavbarBrand>
           {siteConfig.navDropdowns.map((item) => (
-            <Dropdown>
+            <Dropdown key={item.label}>
               <NavbarItem>
                 <DropdownTrigger>
                   <Button
@@ -91,6 +91,7 @@ export const Navbar = () => {
                   <DropdownItem
                     as={NextLink}
                     href={page.href}
+                    key={page.href}
                   >{page.label}</DropdownItem>
                 ))}
               </DropdownMenu>

@@ -1,6 +1,6 @@
 import { title } from "@/components/primitives";
 import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/card";
-import { Button } from "@nextui-org/button";
+import AddToCartButton from "@/components/add-to-cart-button";
 import { promises as fs } from "fs";
 
 export default async function TextbooksPage() {
@@ -11,17 +11,15 @@ export default async function TextbooksPage() {
     <div>
       <h1 className={title()}>Textbooks</h1>
       {textbooks.map((book) => (
-        <Card className="max-w-[400px]">
-          <CardHeader className="flex gap-3">
+        <Card className="max-w-[600px] m-8 p-2" key={book.id}>
+          <CardHeader className="justify-start">
             <p>{book.title}</p>
-            <p>{book.author} </p>
           </CardHeader>
           <CardBody>
+            <p>{book.author} </p>
             <p>${book.price}</p>
           </CardBody>
-          <Button>
-            add to cart
-          </Button>
+          <AddToCartButton name={book.title} price={book.price}></AddToCartButton>
         </Card>
       ))}
     </div>
