@@ -26,11 +26,11 @@ export const siteConfig = {
 			pages: [
 				{
 					label: "Events",
-					href: "/signin"
+					href: "/events"
 				},
 				{
 					label: "Elections",
-					href: "/signup"
+					href: "/elections"
 				},
 			]
 		},
