@@ -1,4 +1,4 @@
-import firebase_app from "@/config/firebase";
+import React from "react";
 import { 
   getAuth, 
   onAuthStateChanged,
@@ -8,6 +8,8 @@ import {
   signInWithPopup 
 } from "firebase/auth";
 
+import firebase_app from "@/config/firebase";
+
 function authInstance() {
   //const app = initializeApp(firebaseConfig);
   const auth = getAuth(firebase_app);
@@ -15,7 +17,7 @@ function authInstance() {
 };
 
 function userInstance() {
-  const [user, setUser] = useState();
+  const [user, setUser] = React.useState();
   onAuthStateChanged(authInstance(), (user) => {
     setUser(user)
   });
@@ -46,15 +48,18 @@ async function signup(email, password) {
   return { result, error }; 
 }
 
-function signInWithGooglePopup() {
+async function signInWithGooglePopup() {
   const provider = new GoogleAuthProvider();
-  signInWithPopup(authInstance(), provider, browserPopupRedirectResolver)
+  var res = null;
+  await signInWithPopup(authInstance(), provider, browserPopupRedirectResolver)
     .then((result) => {
+      res = result;
     })
     .catch((error) => {
       console.log("Caught error Popup closed");
       console.log(error)
     });
+  return res
 }
 
 module.exports = {
