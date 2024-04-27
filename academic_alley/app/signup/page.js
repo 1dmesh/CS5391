@@ -1,96 +1,92 @@
 "use client"
 import React from "react";
-import signup from "@/components/firebase";
 import { useRouter } from 'next/navigation'
+import {
+    Button,
+    Card,
+    Divider,
+    Spacer
+} from "@nextui-org/react";
 
-function Page() {
-    const [email, setEmail] = React.useState('')
-    const [password, setPassword] = React.useState('')
+import signup from "@/components/firebase";
+import { DefaultInput } from "@/components/inputs"
+
+export default function SignupPage() {
+    const [email, setEmail] = React.useState()
+    const [username, setUsername] = React.useState()
+    const [firstname, setFirstname] = React.useState()
+    const [lastname, setLastname] = React.useState()
+    const [password, setPassword] = React.useState()
+
     const router = useRouter()
 
     const handleForm = async (event) => {
         event.preventDefault()
-
         const { result, error } = await signup(email, password);
-
         if (error) {
             return console.log(error)
         }
-
-        // else successful
         console.log(result)
-        return router.push("/admin")
+        return router.push("/")
     }
     return (
-        <>
-            <div style={{ height: '100%', width: '100%' }} className="flex flex-wrap justify-center content-center">
-                <form className="w-96" onSubmit={handleForm}>
-                    <h1 className="text-2xl font-bold text-center mb-4">Sign Up</h1>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-600">
-                        Username
-                    </label>
-                    <input
-                        required
-                        type="text"
-                        id="username"
-                        name="username"
-                        className="mt-1 p-2 border border-gray-300 rounded-md w-full"
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <label htmlFor="first_name" className="block text-sm font-medium text-gray-600">
-                        First Name
-                    </label>
-                    <input
-                        required
-                        type="text"
-                        id="first_name"
-                        name="first_name"
-                        className="mt-1 p-2 border border-gray-300 rounded-md w-full"
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <label htmlFor="last_name" className="block text-sm font-medium text-gray-600">
-                        Last Name
-                    </label>
-                    <input
-                        required
-                        type="text"
-                        id="last_name"
-                        name="last_name"
-                        className="mt-1 p-2 border border-gray-300 rounded-md w-full"
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <label htmlFor="email" className="block mt-4 text-sm font-medium text-gray-600">
-                        Email
-                    </label>
-                    <input
-                        required
-                        type="email"
-                        id="email"
-                        name="email"
-                        className="mt-1 p-2 border border-gray-300 rounded-md w-full"
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <label htmlFor="password" className="block mt-4 text-sm font-medium text-gray-600">
-                        Password
-                    </label>
-                    <input
-                        required
-                        type="password"
-                        id="password"
-                        name="password"
-                        className="mt-1 p-2 border border-gray-300 rounded-md w-full"
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                    <button
-                        type="submit"
-                        className="mt-4 w-full bg-blue-500 font-semibold text-white p-2 rounded-md hover:bg-blue-600"
-                    >
-                        SignUp
-                    </button>
-                </form>
-            </div>
-        </>
+        <div className="h-full w-full flex flex-wrap content-center justify-center">
+            <Card 
+                style={{ height: '75%', width: '75%' }}
+                className="flex flex-wrap content-center justify-center">
+                <div style={{width: "50%"}}>
+                    <form onSubmit={handleForm}>
+                        <h1 className="text-2xl font-bold text-center">Sign Up</h1>
+                        <Spacer y={10}/>
+                        <Divider />
+                        <Spacer y={10}/>
+                        <DefaultInput
+                            isRequired
+                            isClearable
+                            label="First Name"
+                            setState={setFirstname}
+                        />
+                        <Spacer y={2}/>
+                        <DefaultInput
+                            isRequired
+                            isClearable
+                            label="Last Name"
+                            setState={setLastname}
+                        />
+                        <Spacer y={2}/>
+                        <DefaultInput
+                            isRequired
+                            isClearable
+                            label="Username"
+                            setState={setUsername}
+                        />
+                        <Spacer y={2}/>
+                        <DefaultInput
+                            isRequired
+                            isClearable
+                            type="email"
+                            label="Email"
+                            setState={setEmail}
+                        />
+                        <Spacer y={2}/>
+                        <DefaultInput
+                            isRequired
+                            isClearable
+                            type="password"
+                            label="Password"
+                            setState={setPassword}
+                        />
+                        <Spacer y={5}/>
+                        <Button
+                            type="submit"
+                            color="primary"
+                            variant="shadow"
+                            className="mt-4 w-full">
+                        Sign up
+                        </Button>
+                    </form>
+                </div>
+            </Card>
+        </div>
     );
 }
-
-export default Page;
