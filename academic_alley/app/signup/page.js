@@ -1,6 +1,6 @@
-'use client'
+"use client"
 import React from "react";
-import signup from "@/components/auth/signup";
+import signup from "@/components/firebase";
 import { useRouter } from 'next/navigation'
 
 function Page() {

@@ -1,5 +1,19 @@
 "use client"  // TODO: dropdown imports fail without this?
+
+import { siteConfig } from "@/config/site";
+import NextLink from "next/link";
+import clsx from "clsx";
+
 import {
+  Button,
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownSection,
+  DropdownItem,
+  Input,
+  Kbd,
+  Link,
   Navbar as NextUINavbar,
   NavbarContent,
   NavbarMenu,
@@ -7,24 +21,8 @@ import {
   NavbarBrand,
   NavbarItem,
   NavbarMenuItem,
-} from "@nextui-org/navbar";
-import {
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownSection,
-  DropdownItem,
-} from "@nextui-org/dropdown";
-import { Button } from "@nextui-org/button";
-import { Kbd } from "@nextui-org/kbd";
-import { Link } from "@nextui-org/link";
-import { Input } from "@nextui-org/input";
-
+} from "@nextui-org/react";
 import { link as linkStyles } from "@nextui-org/theme";
-
-import { siteConfig } from "@/config/site";
-import NextLink from "next/link";
-import clsx from "clsx";
 
 import { ThemeSwitch } from "@/components/theme-switch";
 import {
@@ -37,7 +35,6 @@ import {
 } from "@/components/icons";
 
 import { Logo } from "@/components/icons";
-import { isConstTypeReference } from "typescript";
 
 export const Navbar = () => {
   const searchInput = (
