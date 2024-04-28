@@ -1,3 +1,14 @@
+/*
+Task:
+8. Meal plan
+A student can purchase a meal plan online by credit card. 
+He/she can buy a meal plan by month at $600 or by semester at a 5% discount.
+
+Images:
+https://www.flaticon.com/free-icon/cereal_5371118?related_id=5473629&origin=search
+https://www.flaticon.com/free-icon/cutlery_3170733
+https://www.flaticon.com/free-icon/dish_1065715
+*/
 import React from "react";
 import {
 	Card, 
@@ -6,12 +17,6 @@ import {
 	Image,
 	Spacer
 } from "@nextui-org/react";
-
-/*
-https://www.flaticon.com/free-icon/cereal_5371118?related_id=5473629&origin=search
-https://www.flaticon.com/free-icon/cutlery_3170733
-https://www.flaticon.com/free-icon/dish_1065715
-*/
 
 function MealCard({
 	header,
