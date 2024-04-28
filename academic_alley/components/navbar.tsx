@@ -1,7 +1,10 @@
+/*
+Images:
+https://www.flaticon.com/free-icon/graduate-hat_3561639?term=academic&page=1&position=12&origin=search&related_id=3561639
+*/
 "use client"
 import React from "react"
 import NextLink from "next/link";
-import clsx from "clsx";
 
 import {
   Avatar,
@@ -18,8 +21,9 @@ import {
   NavbarMenuToggle,
   NavbarBrand,
   NavbarItem,
+  Image,
+  Spacer,
 } from "@nextui-org/react";
-import { link as linkStyles } from "@nextui-org/theme";
 import { onAuthStateChanged } from "firebase/auth";
 import { useRouter } from 'next/navigation'
 
@@ -127,7 +131,14 @@ export const Navbar = () => {
           <NavbarMenuToggle/>
           <NavbarBrand>
             <NextLink className="flex justify-start items-center gap-1" href="/">
-              <Logo />
+              {/*<Logo />*/}
+              <Spacer x={2}/>
+              <Image
+                alt="Logo"
+                src="/graduate-hat.png"
+                width={36}
+                height={36}/>
+              <Spacer x={2}/>
               <p className="font-bold text-inherit">Academic Alley</p>
             </NextLink>
           </NavbarBrand>
