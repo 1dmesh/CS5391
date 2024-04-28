@@ -10,8 +10,11 @@ import {
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
+  Link,
   Navbar as NextUINavbar,
   NavbarContent,
+  NavbarMenu,
+  NavbarMenuItem,
   NavbarMenuToggle,
   NavbarBrand,
   NavbarItem,
@@ -98,7 +101,27 @@ function UserButton() {
 export const Navbar = () => {
 
   return (
-    <NextUINavbar isBordered maxWidth="xl" position="sticky">
+    <NextUINavbar isBordered maxWidth="2xl" position="sticky">
+      <NavbarMenu>
+        <div className="mx-4 mt-2 flex flex-col gap-2">
+          {siteConfig.navMenuItems.map((item, index) => (
+            <NavbarMenuItem key={`${item}-${index}`}>
+              <Link
+                color={
+                  index === 2
+                    ? "primary"
+                    : index === siteConfig.navMenuItems.length - 1
+                    ? "danger"
+                    : "foreground"
+                }
+                href="#"
+                size="lg">
+                {item.label}
+              </Link>
+            </NavbarMenuItem>
+          ))}
+        </div>
+      </NavbarMenu>
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarContent>
           <NavbarMenuToggle/>
@@ -134,22 +157,6 @@ export const Navbar = () => {
             </DropdownMenu>
           </Dropdown>
         ))}
-        <ul className="hidden lg:flex gap-4 justify-start ml-2">
-          {siteConfig.navItems.map((item) => (
-            <NavbarItem key={item.href}>
-              <NextLink
-                className={clsx(
-                  linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium"
-                )}
-                color="foreground"
-                href={item.href}
-              >
-                {item.label}
-              </NextLink>
-            </NavbarItem>
-          ))}
-        </ul>
       </NavbarContent>
       <NavbarContent
         className="hidden sm:flex basis-1/5 sm:basis-full"
