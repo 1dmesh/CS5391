@@ -1,9 +1,10 @@
-"use client"  // TODO: dropdown imports fail without this?
+"use client"
 import React from "react"
 import NextLink from "next/link";
 import clsx from "clsx";
 
 import {
+  Avatar,
   Button,
   Dropdown,
   DropdownTrigger,
@@ -16,6 +17,7 @@ import {
   NavbarItem,
 } from "@nextui-org/react";
 import { link as linkStyles } from "@nextui-org/theme";
+import { onAuthStateChanged } from "firebase/auth";
 import { useRouter } from 'next/navigation'
 
 import { siteConfig } from "@/config/site";
@@ -24,12 +26,23 @@ import { ChevronDown } from "@/components/icons";
 import { Logo } from "@/components/icons";
 
 import { 
-  userInstance, 
+  authInstance, 
   logout as firebaseLogout
 } from "@/components/firebase"
 
 function UserButton() {
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false)
+  const [profileURL, setProfileURL] = React.useState("")
   const router = useRouter()
+
+  onAuthStateChanged(authInstance(), (user) => {
+    if(user) {
+      setIsLoggedIn(true)
+      setProfileURL(user.photoURL ? user.photoURL : "")
+    } else {
+      setIsLoggedIn(false)
+    }
+  });
 
   const signin = () => {
     router.push("/signin")
@@ -37,26 +50,41 @@ function UserButton() {
   const signup = () => {
     router.push("/signup")
   }
-  const logout = () => {
-    firebaseLogout();
-    router.push("/")
+
+  const dropdownAction = (key) => {
+    if (key == "logout") {
+      firebaseLogout();
+      router.push("/")
+    } else if (key == "account") {
+      router.push("/account")
+    }
   }
 
   return (
     <>
       {
-        userInstance() && (
-          <Button onClick={logout}>
-            Logout
-          </Button>
+        isLoggedIn && (
+          <Dropdown placement="bottom-start">
+              <DropdownTrigger>
+                <Avatar src={profileURL} size="md"/>
+              </DropdownTrigger>
+            <DropdownMenu onAction={(key) => dropdownAction(key)}>
+              <DropdownItem key="account">
+                Account
+              </DropdownItem>
+              <DropdownItem key="logout">
+                Logout
+              </DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
         )
       }
       {
-        !userInstance() && (
+        !isLoggedIn && (
           <>
-          <Button onClick={signin}>
-            Sign In
-          </Button>
+            <Button onClick={signin}>
+              Sign In
+            </Button>
             <Button onClick={signup}>
               Sign Up
             </Button>

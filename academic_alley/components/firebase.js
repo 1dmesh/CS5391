@@ -10,21 +10,13 @@ import {
 
 import firebase_app from "@/config/firebase";
 
-function authInstance() {
+export function authInstance() {
   //const app = initializeApp(firebaseConfig);
-  const auth = getAuth(firebase_app);
+  const auth = getAuth(firebase_app)
   return auth
 };
 
-function userInstance() {
-  const [user, setUser] = React.useState();
-  onAuthStateChanged(authInstance(), (user) => {
-    setUser(user)
-  });
-  return user
-}
-
-async function signin(email, password) {
+export async function signin(email, password) {
     let result = null,
         error = null;
     try {
@@ -36,14 +28,14 @@ async function signin(email, password) {
     return { result, error };
 }
 
-function logout() {
+export function logout() {
   authInstance().signOut().then(function() {
   }, function(error) {
     console.error(error)
   });
 }
 
-async function signup(email, password) {
+export async function signup(email, password) {
   let result = null,
       error = null;
   try {
@@ -55,7 +47,7 @@ async function signup(email, password) {
   return { result, error }; 
 }
 
-async function signInWithGooglePopup() {
+export async function signInWithGooglePopup() {
   const provider = new GoogleAuthProvider();
   var res = null;
   await signInWithPopup(authInstance(), provider, browserPopupRedirectResolver)
@@ -71,7 +63,6 @@ async function signInWithGooglePopup() {
 
 module.exports = {
   authInstance,
-  userInstance,
   signin,
   logout,
   signInWithGooglePopup,
