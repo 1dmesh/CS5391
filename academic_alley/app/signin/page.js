@@ -9,7 +9,7 @@ import {
 } from "@nextui-org/react";
 
 import { signin, signInWithGooglePopup } from "@/components/firebase";
-import { DefaultInput } from "@/components/inputs"
+import { BorderedInput } from "@/components/inputs"
 
 export default function SigninPage() {
     const [email, setEmail] = React.useState('')
@@ -48,7 +48,7 @@ export default function SigninPage() {
                         <Spacer y={10}/>
                         <Divider/>
                         <Spacer y={10}/>
-                        <DefaultInput
+                        <BorderedInput
                             isRequired
                             isClearable
                             type="email"
@@ -56,7 +56,7 @@ export default function SigninPage() {
                             setState={setEmail}
                         />
                         <Spacer y={5}/>
-                        <DefaultInput
+                        <BorderedInput
                             isRequired
                             isClearable
                             type={passwordVisible ? "text" : "password"}

@@ -9,7 +9,7 @@ import {
 } from "@nextui-org/react";
 
 import signup from "@/components/firebase";
-import { DefaultInput } from "@/components/inputs"
+import { BorderedInput } from "@/components/inputs"
 
 export default function SignupPage() {
     const [email, setEmail] = React.useState()
@@ -40,28 +40,28 @@ export default function SignupPage() {
                         <Spacer y={10}/>
                         <Divider />
                         <Spacer y={10}/>
-                        <DefaultInput
+                        <BorderedInput
                             isRequired
                             isClearable
                             label="First Name"
                             setState={setFirstname}
                         />
                         <Spacer y={2}/>
-                        <DefaultInput
+                        <BorderedInput
                             isRequired
                             isClearable
                             label="Last Name"
                             setState={setLastname}
                         />
                         <Spacer y={2}/>
-                        <DefaultInput
+                        <BorderedInput
                             isRequired
                             isClearable
                             label="Username"
                             setState={setUsername}
                         />
                         <Spacer y={2}/>
-                        <DefaultInput
+                        <BorderedInput
                             isRequired
                             isClearable
                             type="email"
@@ -69,7 +69,7 @@ export default function SignupPage() {
                             setState={setEmail}
                         />
                         <Spacer y={2}/>
-                        <DefaultInput
+                        <BorderedInput
                             isRequired
                             isClearable
                             type="password"

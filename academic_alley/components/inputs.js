@@ -4,22 +4,59 @@ import {
     Input
 } from "@nextui-org/react";
 
-function DefaultInput({
+export function InputWithState({
   type = "text",
+  setState,
   ...props
 }) {
-  const setState = props.setState
-
   return (
     <Input
       {...props}
-      variant="bordered"
-      className="border-gray-300 rounded-md w-full"
       onChange={(e) => setState(e.target.value)}
     />
   );
 }
 
+export function BorderedInput(props) {
+  return (
+    <InputWithState
+      variant="bordered"
+      {...props}
+    />
+  );
+}
+
+export function FadedInput(props) {
+  return (
+    <InputWithState
+      variant="faded"
+      {...props}
+    />
+  );
+}
+
+export function FlatInput(props) {
+  return (
+    <InputWithState
+      variant="flat"
+      {...props}
+    />
+  );
+}
+
+export function UnderlinedInput(props) {
+  return (
+    <InputWithState
+      variant="underlined"
+      {...props}
+    />
+  );
+}
+
 module.exports = {
-  DefaultInput
+  InputWithState,
+  BorderedInput,
+  FadedInput,
+  FlatInput,
+  UnderlinedInput
 }
