@@ -3,7 +3,8 @@ import {
 	Card, 
 	CardHeader, 
 	CardBody, 
-	Image
+	Image,
+	Spacer
 } from "@nextui-org/react";
 
 /*
@@ -37,16 +38,20 @@ function MealCard({
 
 export default function DiningPage() {
   return (
-		<div className="grid gap-2 grid-cols-3 grid-rows-1">
-			<MealCard 
-				header=""
-				image="/cereal.png"/>
-			<MealCard 
-				header=""
-				image="/dish.png"/>
-			<MealCard 
-				header=""
-				image="/cutlery.png"/>
-		</div>
+		<>
+			<h4>TODO: Format, make them clickable for "checkout". Maybe a modal?</h4>
+			<Spacer y={10}/>
+			<div className="grid gap-2 grid-cols-3 grid-rows-1">
+				<MealCard 
+					header=""
+					image="/cereal.png"/>
+				<MealCard 
+					header=""
+					image="/dish.png"/>
+				<MealCard 
+					header=""
+					image="/cutlery.png"/>
+			</div>
+		</>
   );
 }
