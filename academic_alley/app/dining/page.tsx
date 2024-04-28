@@ -49,13 +49,13 @@ export default function DiningPage() {
 			<div className="grid gap-2 grid-cols-3 grid-rows-1">
 				<MealCard 
 					header=""
-					image="/cereal.png"/>
+					image="/assets/dining/cereal.png"/>
 				<MealCard 
 					header=""
-					image="/dish.png"/>
+					image="/assets/dining/dish.png"/>
 				<MealCard 
 					header=""
-					image="/cutlery.png"/>
+					image="/assets/dining/cutlery.png"/>
 			</div>
 		</>
   );
