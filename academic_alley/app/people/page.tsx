@@ -14,7 +14,7 @@ export default function PeoplePage() {
 
   return (
 		<>
-			<h4>So much! But it probably looks like this? A filter is def needed</h4>
+			<h4>TODO: So much! But it probably looks like this? A filter is def needed</h4>
 			<Spacer y={10}/>
 			<BorderedInput 
 				label="Search for people, if you want to."
