@@ -17,7 +17,7 @@ export default function PeoplePage() {
 			<h4>So much! But it probably looks like this? A filter is def needed</h4>
 			<Spacer y={10}/>
 			<BorderedInput 
-				label="Search for people!"
+				label="Search for people, if you want to."
 				setState={setSearch}/>
 			<Spacer y={10}/>
 			<Divider/>
