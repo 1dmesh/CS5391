@@ -36,6 +36,13 @@ async function signin(email, password) {
     return { result, error };
 }
 
+function logout() {
+  authInstance().signOut().then(function() {
+  }, function(error) {
+    console.error(error)
+  });
+}
+
 async function signup(email, password) {
   let result = null,
       error = null;
@@ -66,6 +73,7 @@ module.exports = {
   authInstance,
   userInstance,
   signin,
+  logout,
   signInWithGooglePopup,
   signup
 }

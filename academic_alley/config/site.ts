@@ -47,8 +47,25 @@ export const siteConfig = {
 				},
 			]
 		},
+		{
+			label: "Services",
+			pages: [
+				{
+					label: "Textbooks",
+					href: "/textbooks"
+				},
+				{
+					label: "Dining",
+					href: "/dining"
+				},
+				{
+					label: "Transportation",
+					href: "/transportation"
+				},
+			]
+		}
 	],
-	navItems: [
+	navItems: [/*
 		{
 			label: "Textbooks",
 			href: "/textbooks",
@@ -61,7 +78,7 @@ export const siteConfig = {
 			label: "Transportation",
 			href: "/transportation",
 		}
-	],
+	*/],
 	// navMenuItems: [],
   // TODO: these appear in the popup menu on the right of the navbar
   // consider making these identical to the navbar or removing the menu entirely
