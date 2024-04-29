@@ -1,54 +1,68 @@
-import { Link } from "@nextui-org/link";
-import { Snippet } from "@nextui-org/snippet";
-import { Code } from "@nextui-org/code"
-import { button as buttonStyles } from "@nextui-org/theme";
-import { siteConfig } from "@/config/site";
-import { title, subtitle } from "@/components/primitives";
-import { GithubIcon } from "@/components/icons";
 
-export default function Home() {
+/*
+Images:
+	- https://www.pexels.com/photo/group-of-people-enjoying-music-concert-325521/
+	- https://res.cloudinary.com/jerrick/image/upload/v1571145256/5da5c628d95c8e001d0b68d5.jpg
+	- https://channellife.co.nz/uploads/story/2022/07/04/GettyImages-1249219777.webp
+*/
+"use client"
+import React from "react";
+import { 
+	Card, 
+	CardHeader, 
+	Image 
+} from "@nextui-org/react";
+
+export default function Page() {
 	return (
-		<section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-			<div className="inline-block max-w-lg text-center justify-center">
-        <h1 className={title()}>Welcome!</h1>
-      </div>
-			{/* <div className="inline-block max-w-lg text-center justify-center">
-				<h1 className={title()}>Make&nbsp;</h1>
-				<h1 className={title({ color: "violet" })}>beautiful&nbsp;</h1>
-				<br />
-				<h1 className={title()}>
-					websites regardless of your design experience.
-				</h1>
-				<h2 className={subtitle({ class: "mt-4" })}>
-					Beautiful, fast and modern React UI library.
-				</h2>
+		<>
+			<div className="grid grid-cols-2 gap-4">
+				<Card className="col-span-2 h-[400px]">
+					<CardHeader className="absolute z-10 top-1 flex-col !items-start">
+						<p className="text-tiny text-white/60 uppercase font-bold drop-shadow-md">
+							Elections & Events
+						</p>
+						<h4 className="text-white font-medium text-large drop-shadow-md">
+							Find ways to get involved in your community.
+						</h4>
+					</CardHeader>
+					<Image
+						removeWrapper
+						alt="Card background"
+						className="z-0 w-full h-full object-cover object-left-bottom"
+						src="/assets/homepage/involvement.png"/>
+				</Card>
+				<Card className="col-span-1 h-[400px]">
+					<CardHeader className="absolute z-10 top-1 flex-col !items-start">
+						<p className="text-tiny text-white/60 uppercase font-bold drop-shadow-md">
+							Connections
+						</p>
+						<h4 className="text-white font-medium text-large drop-shadow-md">
+							Search for connections.
+						</h4>
+					</CardHeader>
+					<Image
+						removeWrapper
+						alt="Card background"
+						className="z-0 w-full h-full object-cover object-top-left"
+						src="/assets/homepage/newpeople.png"/>
+				</Card>
+				<Card className="col-span-1 h-[400px]">
+					<CardHeader className="absolute z-10 top-1 flex-col !items-start">
+						<p className="text-tiny text-white/60 uppercase font-bold drop-shadow-md">
+							Services
+						</p>
+						<h4 className="text-white font-medium text-large drop-shadow-md">
+							Explore our online services.
+						</h4>
+					</CardHeader>
+					<Image
+						removeWrapper
+						alt="Card background"
+						className="z-0 w-full h-full object-cover object-top-left"
+						src="/assets/homepage/services.png"/>
+				</Card>
 			</div>
-
-			<div className="flex gap-3">
-				<Link
-					isExternal
-					href={siteConfig.links.docs}
-					className={buttonStyles({ color: "primary", radius: "full", variant: "shadow" })}
-				>
-					Documentation
-				</Link>
-				<Link
-					isExternal
-					className={buttonStyles({ variant: "bordered", radius: "full" })}
-					href={siteConfig.links.github}
-				>
-					<GithubIcon size={20} />
-					GitHub
-				</Link>
-			</div>
-
-			<div className="mt-8">
-				<Snippet hideSymbol hideCopyButton variant="flat">
-					<span>
-						Get started by editing <Code color="primary">app/page.tsx</Code>
-					</span>
-				</Snippet>
-			</div> */}
-		</section>
+		</>
 	);
 }
