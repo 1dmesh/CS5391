@@ -5,6 +5,12 @@ export interface iTextbook {
   price: number;
 }
 
+export interface iCartItem {
+  name: string,
+  price: number,
+  qty: number
+}
+
 export const textbooks: iTextbook[] = [
   {
     title: "Computer Architecture: A Quantitative Approach",

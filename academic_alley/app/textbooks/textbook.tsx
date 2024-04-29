@@ -15,7 +15,7 @@ export default function TextbookCard(book: iTextbook) {
         </p>
         <p className="text-right">${book.price}</p>
       </CardBody>
-      <AddToCartButton name={book.title} price={book.price}></AddToCartButton>
+      <AddToCartButton id={book.ISBN} name={book.title} price={book.price}></AddToCartButton>
     </Card>
   );
 }
