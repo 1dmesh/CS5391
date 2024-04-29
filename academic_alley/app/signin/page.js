@@ -5,13 +5,18 @@ import {
     Button,
     Card,
     Divider,
-    Spacer
+    Spacer,
 } from "@nextui-org/react";
+import { sendPasswordResetEmail } from "firebase/auth";
 
-import { signin, signInWithGooglePopup } from "@/components/firebase";
+import { 
+    authInstance,
+    signin, 
+    signInWithGooglePopup 
+} from "@/components/firebase";
 import { BorderedInput } from "@/components/inputs"
 
-export default function SigninPage() {
+function Login({setForgotPass}) {
     const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('')
     const router = useRouter()
@@ -38,47 +43,108 @@ export default function SigninPage() {
     }
 
     return (
+        <>
+            <form onSubmit={handleForm}>
+                <h1 className="text-2xl font-bold text-center">Sign In</h1>
+                <Spacer y={10}/>
+                <Divider/>
+                <Spacer y={10}/>
+                <BorderedInput
+                    isRequired
+                    isClearable
+                    type="email"
+                    label="Email"
+                    setState={setEmail}
+                />
+                <Spacer y={5}/>
+                <BorderedInput
+                    isRequired
+                    isClearable
+                    type={passwordVisible ? "text" : "password"}
+                    label="Password"
+                    setState={setPassword}
+                />
+                <Spacer y={5}/>
+                <Button
+                    type="submit"
+                    color="primary"
+                    variant="shadow"
+                    className="mt-4 w-full">
+                Sign in
+                </Button>
+            </form>
+            <Spacer y={5}/>
+            <Button 
+                color="primary"
+                variant="shadow"
+                className="w-full"
+                onClick={handleGoogle}>
+            Sign in with Google
+            </Button>
+            <Spacer y={5}/>
+            <Button 
+                color="primary" 
+                variant="light"
+                onPress={() => setForgotPass(true)}>
+            Forgot Password?
+            </Button>
+        </>
+    );
+}
+
+function ForgotPassword({setForgotPass}) {
+    const [email, setEmail] = React.useState("")
+
+    const forgotPassword = () => {
+        setForgotPass(false)
+        sendPasswordResetEmail(authInstance(), email)
+        .then(() => {})
+        .catch((error) => {
+            console.error(error)
+        });
+    }
+    
+    return (
+        <>
+            <h1 className="text-2xl font-bold text-center">Password Recovery</h1>
+            <Spacer y={10}/>
+            <Divider/>
+            <Spacer y={10}/>
+            <BorderedInput
+                isRequired
+                isClearable
+                type="email"
+                label="Email"
+                setState={setEmail}/>
+            <Spacer y={10}/>
+            <div class="columns-2 space-x-5">
+            <Button 
+                color="primary" 
+                onPress={() => setForgotPass(false)}>
+            Cancel
+            </Button>
+            <Button 
+                color="primary" 
+                onPress={forgotPassword}>
+            Submit
+            </Button>
+            </div>
+        </>
+    );
+}
+
+export default function SigninPage() {
+    const [forgotPass, setForgotPass] = React.useState(false)
+
+    return (
         <div className="h-full w-full flex flex-wrap content-center justify-center">
             <Card 
                 style={{ height: '75%', width: '75%' }}
                 className="flex flex-wrap content-center justify-center">
                 <div style={{width: "50%"}}>
-                    <form onSubmit={handleForm}>
-                        <h1 className="text-2xl font-bold text-center">Sign In</h1>
-                        <Spacer y={10}/>
-                        <Divider/>
-                        <Spacer y={10}/>
-                        <BorderedInput
-                            isRequired
-                            isClearable
-                            type="email"
-                            label="Email"
-                            setState={setEmail}
-                        />
-                        <Spacer y={5}/>
-                        <BorderedInput
-                            isRequired
-                            isClearable
-                            type={passwordVisible ? "text" : "password"}
-                            label="Password"
-                            setState={setPassword}
-                        />
-                        <Spacer y={5}/>
-                        <Button
-                            type="submit"
-                            color="primary"
-                            variant="shadow"
-                            className="mt-4 w-full">
-                        Sign in
-                        </Button>
-                    </form>
-                    <Button 
-                        color="primary"
-                        variant="shadow"
-                        className="mt-4 w-full"
-                        onClick={handleGoogle}>
-                    Sign in with Google
-                    </Button>
+                    { forgotPass ? 
+                    <ForgotPassword setForgotPass={setForgotPass}/> :
+                    <Login setForgotPass={setForgotPass}/>}
                 </div>
             </Card>
         </div>
