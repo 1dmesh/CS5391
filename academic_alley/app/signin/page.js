@@ -95,10 +95,12 @@ function Login({setForgotPass}) {
 function ForgotPassword({setForgotPass}) {
     const [email, setEmail] = React.useState("")
 
-    const forgotPassword = () => {
-        setForgotPass(false)
+    const forgotPassword = async (event) => {
+        event.preventDefault()
         sendPasswordResetEmail(authInstance(), email)
-        .then(() => {})
+        .then(() => {
+            setForgotPass(false)
+        })
         .catch((error) => {
             console.error(error)
         });
@@ -110,25 +112,27 @@ function ForgotPassword({setForgotPass}) {
             <Spacer y={10}/>
             <Divider/>
             <Spacer y={10}/>
-            <BorderedInput
-                isRequired
-                isClearable
-                type="email"
-                label="Email"
-                setState={setEmail}/>
-            <Spacer y={10}/>
-            <div class="columns-2 space-x-5">
-            <Button 
-                color="primary" 
-                onPress={() => setForgotPass(false)}>
-            Cancel
-            </Button>
-            <Button 
-                color="primary" 
-                onPress={forgotPassword}>
-            Submit
-            </Button>
-            </div>
+            <form onSubmit={forgotPassword}>
+                <BorderedInput
+                    isRequired
+                    isClearable
+                    type="email"
+                    label="Email"
+                    setState={setEmail}/>
+                <Spacer y={10}/>
+                <div class="columns-2 space-x-5">
+                <Button 
+                    color="primary" 
+                    onPress={() => setForgotPass(false)}>
+                Cancel
+                </Button>
+                <Button 
+                    type="submit"
+                    color="primary">
+                Submit
+                </Button>
+                </div>
+            </form>
         </>
     );
 }
