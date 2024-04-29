@@ -2,8 +2,8 @@
 Images:
 https://www.flaticon.com/free-icon/graduate-hat_3561639?term=academic&page=1&position=12&origin=search&related_id=3561639
 */
-"use client"
-import React from "react"
+"use client";
+import React from "react";
 import NextLink from "next/link";
 
 import {
@@ -25,85 +25,69 @@ import {
   Spacer,
 } from "@nextui-org/react";
 import { onAuthStateChanged } from "firebase/auth";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
 
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
-import { ChevronDown } from "@/components/icons";
+import { CartIcon, ChevronDown } from "@/components/icons";
 import { Logo } from "@/components/icons";
 
-import { 
-  authInstance, 
-  logout as firebaseLogout
-} from "@/components/firebase"
+import { authInstance, logout as firebaseLogout } from "@/components/firebase";
 
 function UserButton() {
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false)
-  const [profileURL, setProfileURL] = React.useState("")
-  const router = useRouter()
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [profileURL, setProfileURL] = React.useState("");
+  const router = useRouter();
 
   onAuthStateChanged(authInstance(), (user) => {
-    if(user) {
-      setIsLoggedIn(true)
-      setProfileURL(user.photoURL ? user.photoURL : "")
+    if (user) {
+      setIsLoggedIn(true);
+      setProfileURL(user.photoURL ? user.photoURL : "");
     } else {
-      setIsLoggedIn(false)
+      setIsLoggedIn(false);
     }
   });
 
   const signin = () => {
-    router.push("/signin")
-  }
+    router.push("/signin");
+  };
   const signup = () => {
-    router.push("/signup")
-  }
+    router.push("/signup");
+  };
 
   const dropdownAction = (key) => {
     if (key == "logout") {
       firebaseLogout();
-      router.push("/")
+      router.push("/");
     } else if (key == "account") {
-      router.push("/account")
+      router.push("/account");
     }
-  }
+  };
 
   return (
     <>
-      {
-        isLoggedIn && (
-          <Dropdown placement="bottom-start">
-              <DropdownTrigger>
-                <Avatar src={profileURL} size="md"/>
-              </DropdownTrigger>
-            <DropdownMenu onAction={(key) => dropdownAction(key)}>
-              <DropdownItem key="account">
-                Account
-              </DropdownItem>
-              <DropdownItem key="logout">
-                Logout
-              </DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
-        )
-      }
-      {
-        !isLoggedIn && (
-          <>
-            <Button onClick={signin}>
-              Sign In
-            </Button>
-            <Button onClick={signup}>
-              Sign Up
-            </Button>
-          </>
-        )
-      }
+      {isLoggedIn && (
+        <Dropdown placement="bottom-start">
+          <DropdownTrigger>
+            <Avatar src={profileURL} size="md" />
+          </DropdownTrigger>
+          <DropdownMenu onAction={(key) => dropdownAction(key)}>
+            <DropdownItem key="account">Account</DropdownItem>
+            <DropdownItem key="logout">Logout</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+      )}
+      {!isLoggedIn && (
+        <>
+          <Button onClick={signin}>Sign In</Button>
+          <Button onClick={signup}>Sign Up</Button>
+        </>
+      )}
     </>
   );
 }
 
 export const Navbar = () => {
-
   return (
     <NextUINavbar isBordered maxWidth="2xl" position="sticky">
       <NavbarMenu>
@@ -119,7 +103,8 @@ export const Navbar = () => {
                     : "foreground"
                 }
                 href="#"
-                size="lg">
+                size="lg"
+              >
                 {item.label}
               </Link>
             </NavbarMenuItem>
@@ -128,17 +113,21 @@ export const Navbar = () => {
       </NavbarMenu>
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarContent>
-          <NavbarMenuToggle/>
+          <NavbarMenuToggle />
           <NavbarBrand>
-            <NextLink className="flex justify-start items-center gap-1" href="/">
+            <NextLink
+              className="flex justify-start items-center gap-1"
+              href="/"
+            >
               {/*<Logo />*/}
-              <Spacer x={2}/>
+              <Spacer x={2} />
               <Image
                 alt="Logo"
                 src="/graduate-hat.png"
                 width={36}
-                height={36}/>
-              <Spacer x={2}/>
+                height={36}
+              />
+              <Spacer x={2} />
               <p className="font-bold text-inherit">Academic Alley</p>
             </NextLink>
           </NavbarBrand>
@@ -151,17 +140,17 @@ export const Navbar = () => {
                   disableRipple
                   variant="light"
                   radius="sm"
-                  endContent={<ChevronDown fill="currentColor" size={14}></ChevronDown>}>
+                  endContent={
+                    <ChevronDown fill="currentColor" size={14}></ChevronDown>
+                  }
+                >
                   {item.label}
                 </Button>
               </DropdownTrigger>
             </NavbarItem>
             <DropdownMenu>
               {item.pages.map((page) => (
-                <DropdownItem
-                  as={NextLink}
-                  href={page.href}
-                  key={page.href}>
+                <DropdownItem as={NextLink} href={page.href} key={page.href}>
                   {page.label}
                 </DropdownItem>
               ))}
@@ -171,8 +160,13 @@ export const Navbar = () => {
       </NavbarContent>
       <NavbarContent
         className="hidden sm:flex basis-1/5 sm:basis-full"
-        justify="end">
+        justify="end"
+      >
         <ThemeSwitch />
+        {/* TODO: cart here */}
+        <NextLink href="/cart" aria-label="cart">
+          <CartIcon />
+        </NextLink>
         <UserButton />
       </NavbarContent>
     </NextUINavbar>
