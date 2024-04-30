@@ -1,17 +1,76 @@
 "use client"
 import React from "react";
-import { Card, Avatar, Input, Button } from "@nextui-org/react";
+import { 
+  Avatar,
+  Button,
+  Card,
+  Divider,
+  Spacer,
+} from "@nextui-org/react";
 import { onAuthStateChanged } from "firebase/auth"
 
-import { authInstance } from "@/components/firebase"
-import { FlatInput } from "@/components/inputs";
+import { authInstance, sendPasswordReset } from "@/components/firebase"
+import { BorderedInput } from "@/components/inputs";
 
 export default function Account() {
   const [user, setUser] = React.useState()
+  const [email, setEmail] = React.useState()
+  const [address, setAddress] = React.useState()
+  const [username, setUsername] = React.useState()
+  const [city, setCity] = React.useState()
+  const [firstname, setFirstname] = React.useState()
+  const [state, setState] = React.useState()
+  const [lastname, setLastname] = React.useState()
+  const [zipcode, setZipcode] = React.useState()
 
   onAuthStateChanged(authInstance(), (u) => {
     setUser(u)
   });
+
+  const fields = [
+    {
+      label: "Email",
+      type: "email",
+      setState: setEmail
+    },
+    {
+      label: "Address",
+      setState: setAddress
+    },
+    {
+      label: "Username",
+      setState: setUsername
+    },
+    {
+      label: "City",
+      setState: setCity
+    },
+    {
+      label: "First Name",
+      setState: setFirstname
+    },
+    {
+      label: "State",
+      setState: setState
+    },
+    {
+      label: "Last Name",
+      setState: setLastname
+    },
+    {
+      label: "Zipcode",
+      setState: setZipcode
+    },
+  ]
+
+  const forgotPassword = (event) => {
+    sendPasswordReset(email)
+    alert("Please check your email for a password reset!")
+  }
+
+  const updateInfo = (e) => {
+    alert("Information Updated.")
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,73 +78,42 @@ export default function Account() {
   };
 
   return (
-    <div style={{ height: '100%', width: '100%' }} className="flex flex-wrap content-center justify-center">
+    <div className="flex flex-wrap content-center justify-center">
       <Card style={{ height: '80%', width: '80%' }}>
         <Avatar
           className="w-100 h-100 mt-10 text-large justify-center self-center "
           src={user?.photoURL}
           alt="User avatar"
         />
+        <Spacer y={10}/>
+        <Divider/>
+        <Spacer y={20}/>
         <form className="ml-10 mr-10" onSubmit={handleSubmit}>
-          <div className="flex gap-5 mt-20 max-md:flex-wrap max-md:mt-10 max-md:max-w-full">
-            <FlatInput
-              isRequired
-              isClearable
-              type="email"
-              label="Email"
-              placeholder={user?.email}
-              setState={() => console.log("not implemented")}/>
-            <FlatInput
-              isRequired
-              isClearable
-              label="Test"
-              placeholder={user?.displayName}
-              setState={() => console.log("not implemented")}/>
-          </div>
-          <div className="flex gap-5 mt-3.5 max-md:flex-wrap max-md:max-w-full">
-            <Input
-            
-            />
-            <Input
-            
-            />
-          </div>
-          <div className="flex gap-5 mt-4 max-md:flex-wrap max-md:max-w-full">
-            <Input
-            
-            />
-            <Input
-            
-            />
-          </div>
-          <div className="flex gap-5 mt-4 max-md:flex-wrap max-md:max-w-full">
-            <Input
-            
-            />
-            <Input
-            
-            />
-          </div>
-          <div className="flex gap-5 mt-10 ml-4 w-full max-md:ml-2.5">
-            <Button
-              size="sm"
-              variant="solid"
-              color="primary"
-              className="flex-1 justify-center"
-            >
-              Change Photo
-            </Button>
-            <Button
-              type="submit"
-              size="sm"
-              variant="solid"
-              color="primary"
-              className="flex-1 justify-center whitespace-nowrap"
-            >
+          <div className="grid grid-cols-2 gap-5">
+            {fields.map((field, i) => {
+              return (
+                <BorderedInput 
+                  key={i}
+                  type={field.type ? field.type : "text"}
+                  label={field.label}
+                  setState={field.setState}/>
+              );
+            })}
+              <Button
+                color="primary"
+                variant="shadow"
+                onPress={forgotPassword}>
+              Reset Password
+              </Button>
+              <Button
+                color="primary"
+                variant="shadow"
+                onPress={updateInfo}>
               Update
-            </Button>
+              </Button>
           </div>
         </form>
+        <Spacer y={20}/>
       </Card>
     </div>
   );

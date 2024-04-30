@@ -3,7 +3,8 @@ import {
   GoogleAuthProvider,
   browserPopupRedirectResolver,
   signInWithEmailAndPassword,
-  signInWithPopup 
+  signInWithPopup,
+  sendPasswordResetEmail
 } from "firebase/auth";
 import firebase_app from "@/config/firebase";
 
@@ -54,10 +55,19 @@ export async function signInWithGooglePopup() {
   return res
 }
 
+export async function sendPasswordReset(email) {
+  sendPasswordResetEmail(authInstance(), email)
+  .then(() => {})
+  .catch((error) => {
+      console.error(error)
+  });
+}
+
 module.exports = {
   authInstance,
   signin,
   logout,
   signInWithGooglePopup,
-  signup
+  signup,
+  sendPasswordReset
 }

@@ -7,12 +7,11 @@ import {
     Divider,
     Spacer,
 } from "@nextui-org/react";
-import { sendPasswordResetEmail } from "firebase/auth";
 
 import { 
-    authInstance,
     signin, 
-    signInWithGooglePopup 
+    signInWithGooglePopup,
+    sendPasswordReset,
 } from "@/components/firebase";
 import { BorderedInput } from "@/components/inputs"
 
@@ -97,13 +96,9 @@ function ForgotPassword({setForgotPass}) {
 
     const forgotPassword = async (event) => {
         event.preventDefault()
-        sendPasswordResetEmail(authInstance(), email)
-        .then(() => {
-            setForgotPass(false)
-        })
-        .catch((error) => {
-            console.error(error)
-        });
+        sendPasswordReset(email)
+        setForgotPass(false)
+        alert("Please check your email for a password reset!")
     }
     
     return (
