@@ -35,17 +35,11 @@ import { Logo } from "@/components/icons";
 import { authInstance, logout as firebaseLogout } from "@/components/firebase";
 
 function UserButton() {
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-  const [profileURL, setProfileURL] = React.useState("");
-  const router = useRouter();
-
-  onAuthStateChanged(authInstance(), (user) => {
-    if (user) {
-      setIsLoggedIn(true);
-      setProfileURL(user.photoURL ? user.photoURL : "");
-    } else {
-      setIsLoggedIn(false);
-    }
+  const [user, setUser] = React.useState()
+  const router = useRouter()
+  
+  onAuthStateChanged(authInstance(), (u) => {
+    setUser(u)
   });
 
   const signin = () => {
@@ -66,10 +60,10 @@ function UserButton() {
 
   return (
     <>
-      {isLoggedIn && (
+      {user && (
         <Dropdown placement="bottom-start">
           <DropdownTrigger>
-            <Avatar src={profileURL} size="md" />
+            <Avatar src={user.photoURL} size="md" />
           </DropdownTrigger>
           <DropdownMenu onAction={(key) => dropdownAction(key)}>
             <DropdownItem key="account">Account</DropdownItem>
@@ -77,7 +71,7 @@ function UserButton() {
           </DropdownMenu>
         </Dropdown>
       )}
-      {!isLoggedIn && (
+      {!user && (
         <>
           <Button onClick={signin}>Sign In</Button>
           <Button onClick={signup}>Sign Up</Button>
