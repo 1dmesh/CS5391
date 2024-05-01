@@ -9,14 +9,17 @@ https://www.flaticon.com/free-icon/cereal_5371118?related_id=5473629&origin=sear
 https://www.flaticon.com/free-icon/cutlery_3170733
 https://www.flaticon.com/free-icon/dish_1065715
 */
+"use client"
 import React from "react";
 import {
 	Card, 
 	CardHeader, 
 	CardBody, 
 	Image,
-	Spacer
+	Spacer,
+	Divider
 } from "@nextui-org/react";
+import { title } from "@/components/primitives";
 
 function MealCard({
 	header,
@@ -25,9 +28,7 @@ function MealCard({
 	return (
     <Card className="py-4">
       <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
-        <p className="text-tiny uppercase font-bold">Daily Mix</p>
-        <small className="text-default-500">12 Tracks</small>
-        <h4 className="font-bold text-large">Frontend Radio</h4>
+				{header}
       </CardHeader>
       <CardBody className="overflow-visible py-2">
         <Image
@@ -44,11 +45,21 @@ function MealCard({
 export default function DiningPage() {
   return (
 		<>
-			<h4>TODO: Format, make them clickable for "checkout". Maybe a modal?</h4>
+			<h1 className={title()}>Dining Passes</h1>
 			<Spacer y={10}/>
-			<div className="grid gap-2 grid-cols-3 grid-rows-1">
+			<h4>Please spend your hard earned money on some potatoes.</h4>
+			<Spacer y={10}/>
+			<Divider/>
+			<Spacer y={10}/>
+			<div className="w-full grid gap-2 grid-cols-3 grid-rows-1">
 				<MealCard 
-					header=""
+					header={
+						<>
+							<p className="text-tiny uppercase font-bold">Daily Mix</p>
+							<small className="text-default-500">12 Tracks</small>
+							<h4 className="font-bold text-large">Frontend Radio</h4>
+						</>
+					}
 					image="/assets/dining/cereal.png"/>
 				<MealCard 
 					header=""
@@ -57,6 +68,8 @@ export default function DiningPage() {
 					header=""
 					image="/assets/dining/cutlery.png"/>
 			</div>
+			<Spacer y={10}/>
+			<Divider/>
 		</>
   );
 }
