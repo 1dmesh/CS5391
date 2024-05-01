@@ -16,9 +16,16 @@ export default function CartPage() {
   return (
     <div>
       <h1 className={title()}>Cart</h1>
-      {cartData ? (
+      {(cartData ? Object.keys(cartData).length : 0) > 0 ? (
         Object.keys(cartData).map((key, index) => {
-          return <CartCard key={key} id={key} item={cartData[key]} setCartData={setCartData} />;
+          return (
+            <CartCard
+              key={key}
+              id={key}
+              item={cartData[key]}
+              setCartData={setCartData}
+            />
+          );
         })
       ) : (
         <p>Cart is empty.</p>
