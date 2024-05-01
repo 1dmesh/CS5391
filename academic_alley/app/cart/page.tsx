@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import { title } from "@/components/primitives";
 import CartCard from "./cart-card";
 import { iCartItem } from "../dataset";
+import { Divider } from "@nextui-org/react";
+import { isTemplateExpression } from "typescript";
 
 export default function CartPage() {
   const [cartData, setCartData] = useState<iCartItem[]>([]);
@@ -12,6 +14,19 @@ export default function CartPage() {
     let cart = JSON.parse(localStorage.getItem("cart"));
     setCartData(cart);
   }, []);
+
+  function getSubtotal() {
+    let subtotal: number = 0;
+
+    for (const [id, item] of Object.entries(cartData)) {
+      console.log(item)
+      subtotal += item.price * item.qty;
+    }
+
+    return (
+      <>{subtotal}</>
+    )
+  }
 
   return (
     <>
@@ -30,7 +45,8 @@ export default function CartPage() {
       ) : (
         <p className="m-8 p-2">Cart is empty.</p>
       )}
-      {/* TODO: show total price */}
+      <Divider></Divider>
+      <div className="m-4 text-right">Subtotal: ${getSubtotal()}</div>
     </>
   );
 }
