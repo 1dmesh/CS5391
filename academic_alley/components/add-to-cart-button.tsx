@@ -31,5 +31,5 @@ export default function AddToCartButton({
     console.log(cart);
   }
 
-  return <Button onPress={addToCart}>add to cart</Button>;
+  return <Button onPress={addToCart}>Add to Cart</Button>;
 }

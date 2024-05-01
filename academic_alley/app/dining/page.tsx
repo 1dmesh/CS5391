@@ -48,12 +48,18 @@ function MealCard({ mealPlan, image }: { mealPlan: iMealPlan; image: string }) {
         <p className="text-small">${mealPlan.price}</p>
       </CardHeader>
       <CardBody className="overflow-visible py-2">
-        <Image
-          alt="Card background"
-          className="object-cover rounded-xl"
-          src={image}
-          width={500}
-        />
+				<Spacer y={5}/>
+				<Divider/>
+				<Spacer y={5}/>
+				<div className="max-w-full self-center items-center">
+					<Image
+						alt="Card background"
+						className="object-cover rounded-xl"
+						src={image}
+						width={300}
+					/>
+				</div>
+				<Spacer y={5}/>
         <AddToCartButton {...mealPlan}></AddToCartButton>
       </CardBody>
     </Card>
@@ -69,7 +75,7 @@ export default function DiningPage() {
       <Spacer y={10} />
       <Divider />
       <Spacer y={10} />
-      <div className="w-full grid gap-2 grid-cols-3 grid-rows-1">
+      <div className="w-full grid gap-2 grid-cols-2 grid-rows-1">
         <MealCard mealPlan={singleMonth} image="/assets/dining/cereal.png" />
         <MealCard mealPlan={fourMonth} image="/assets/dining/dish.png" />
       </div>
