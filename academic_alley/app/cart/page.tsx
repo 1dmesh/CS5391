@@ -1,20 +1,29 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { title } from "@/components/primitives";
 import CartCard from "./cart-card";
+import { iCartItem } from "../dataset";
 
 export default function CartPage() {
-  const cart = JSON.parse(localStorage.getItem("cart"));
+  const [cartData, setCartData] = useState<iCartItem[]>([]);
+
+  useEffect(() => {
+    let cart = JSON.parse(localStorage.getItem("cart"));
+    setCartData(cart);
+  }, []);
 
   return (
     <div>
       <h1 className={title()}>Cart</h1>
-      {Object.keys(cart).map((key, index) => {
-        return (
-          <CartCard {...cart[key]} />
-        );
-      })}
+      {cartData ? (
+        Object.keys(cartData).map((key, index) => {
+          return <CartCard key={key} id={key} item={cartData[key]} setCartData={setCartData} />;
+        })
+      ) : (
+        <p>Cart is empty.</p>
+      )}
+      {/* TODO: show total price */}
     </div>
   );
 }

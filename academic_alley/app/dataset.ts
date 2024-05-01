@@ -6,9 +6,9 @@ export interface iTextbook {
 }
 
 export interface iCartItem {
-  name: string,
-  price: number,
-  qty: number
+  name: string;
+  price: number;
+  // qty: number
 }
 
 export const textbooks: iTextbook[] = [

@@ -19,13 +19,10 @@ export default function AddToCartButton({
       cart = JSON.parse(localStorage.getItem("cart"));
     }
 
-    if (id in cart) {
-      cart[id].qty++;
-    } else {
+    if (!(id in cart)) {
       let cartItem: iCartItem = {
         name: name,
         price: price,
-        qty: 1
       };
       cart[id] = cartItem
     }
