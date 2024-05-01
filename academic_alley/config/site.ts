@@ -62,12 +62,12 @@ export const siteConfig = {
 			href: "/people",
 		},
 		{
-			label: "Roomates",
-			href: "/roomates",
+			label: "Roommates",
+			href: "/roommates",
 		},
 		{
 			label: "Textbooks",
-			href: "/textbook",
+			href: "/textbooks",
 		},
 		{
 			label: "Dining",
