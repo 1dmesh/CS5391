@@ -48,12 +48,12 @@ function MealCard({ mealPlan, image }: { mealPlan: iMealPlan; image: string }) {
         <p className="text-small">${mealPlan.price}</p>
       </CardHeader>
       <CardBody className="overflow-visible py-2">
-        {/* <Image
+        <Image
           alt="Card background"
           className="object-cover rounded-xl"
           src={image}
           width={500}
-        /> */}
+        />
         <AddToCartButton {...mealPlan}></AddToCartButton>
       </CardBody>
     </Card>
