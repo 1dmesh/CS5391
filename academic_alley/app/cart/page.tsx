@@ -14,7 +14,7 @@ export default function CartPage() {
   }, []);
 
   return (
-    <div>
+    <>
       <h1 className={title()}>Cart</h1>
       {(cartData ? Object.keys(cartData).length : 0) > 0 ? (
         Object.keys(cartData).map((key, index) => {
@@ -28,9 +28,9 @@ export default function CartPage() {
           );
         })
       ) : (
-        <p>Cart is empty.</p>
+        <p className="m-8 p-2">Cart is empty.</p>
       )}
       {/* TODO: show total price */}
-    </div>
+    </>
   );
 }

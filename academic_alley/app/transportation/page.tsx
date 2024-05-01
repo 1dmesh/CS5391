@@ -44,7 +44,7 @@ const busCard: iTransportItemCard = {
 
 function TransportItemCard(transportItem: iTransportItemCard) {
   return (
-    <Card className="py-4" key={transportItem.id}>
+    <Card className="m-4 p-2" key={transportItem.id}>
       <CardHeader className="pb-0 pt-2 px-4 flex-row items-start justify-between">
         <p className="text-small uppercase font-bold">{transportItem.name}</p>
         <p className="text-small">${transportItem.price}</p>
