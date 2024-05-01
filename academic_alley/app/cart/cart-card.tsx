@@ -7,7 +7,7 @@ export default function CartCard({
   item,
   setCartData,
 }: {
-  id: number;
+  id: string;
   item: iCartItem;
   setCartData: CallableFunction;
 }) {
@@ -25,14 +25,12 @@ export default function CartCard({
       <CardHeader>
         <p className="font-bold text-left">{item.name}</p>
       </CardHeader>
-      <CardBody className="justify-between">
-        {/* <p>qty: {item.qty}</p> */}
-        <div className="flex gap-5">${item.price}</div>
+      <CardBody className="flex-row justify-between">
         <Button size="sm" color="danger" variant="bordered" onPress={remove}>
           Remove
         </Button>
+        <div className="flex gap-5">${item.price}</div>
       </CardBody>
-      {/* TODO: remove button */}
     </Card>
   );
 }
