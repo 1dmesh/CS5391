@@ -65,7 +65,7 @@ function PersonCard(person: iPerson) {
       </CardHeader>
       <CardBody>
         <p>{person.email}</p>
-        <p>(555)555-5555</p>
+        <p>(555) 555-5555</p>
       </CardBody>
     </Card>
   );
