@@ -29,7 +29,7 @@ export default function TextbookSearch({ defaultValue }: iDefault) {
 
   return (
     <Input
-      className="max-w-[450px] m-8 flex justify-center"
+      className="m-8 flex justify-center"
       placeholder="Search..."
       value={inputValue ?? ""}
       onChange={handleChange}
