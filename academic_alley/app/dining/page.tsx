@@ -66,7 +66,7 @@ function MealCard({ mealPlan, image }: { mealPlan: iMealPlan; image: string }) {
   );
 }
 
-export default function DiningPage() {
+export default function Page() {
   return (
     <>
       <h1 className={title()}>Dining Passes</h1>
