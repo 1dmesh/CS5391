@@ -12,6 +12,22 @@ import { onAuthStateChanged } from "firebase/auth"
 import { authInstance } from "@/components/firebase"
 import { updateRSPV } from "@/app/rspv_logic"
 
+const MONTHS = {
+	0: 'Error',
+  1: 'January',
+  2: 'February',
+  3: 'March',
+  4: 'April',
+  5: 'May',
+  6: 'June',
+  7: 'July',
+  8: 'August',
+  9: 'September',
+  10: 'October',
+  11: 'November',
+  12: 'December',
+};
+
 export default function Page() {
 	const [user, setUser] = React.useState()
 	const [userRSPV, setUserRSPV] = React.useState(null)
@@ -34,7 +50,17 @@ export default function Page() {
 			if(typeof rspv === "undefined") {
 				rspv = null
 			}
-			setUserRSPV(rspv)
+			const byMonth = {};
+			rspv.forEach(item => {
+				const match = item.date.match(/\d+(?=-)/)
+				let month = match ? parseInt(match[0]) : 0
+				month = MONTHS[month]
+				if (!byMonth[month]) {
+					byMonth[month] = [];
+				}
+				byMonth[month].push(item);
+			});
+			setUserRSPV(byMonth)
 		}
 	}
 
@@ -49,31 +75,55 @@ export default function Page() {
       <Divider/>
       <Spacer y={10}/>
 			{userRSPV != null && 
-				<div className="grid grid-cols-3 gap-4">
-					{userRSPV.map((e, i) => {
+				<>
+					{Object.keys(userRSPV).map(month => {
 						return (
-							<Card key={i}>
-								<Spacer y={2}/>
-								<div className="p-4">
-									<h1>{e.title} ({e.date})</h1>
-									<Spacer y={2}/>
-									<Divider/>
-									<Spacer y={2}/>
-									<h2>{e.description}</h2>
-									<Spacer y={4}/>
-									<Button 
-										className="w-full"
-										onPress={(_) => 
-											setUserRSPV(updateRSPV(user, e, "REMOVE"))
-										}>
-											Remove RSPV
-									</Button>
+							<>
+								<h1>{month}</h1>
+								<Spacer y={5}/>
+								<Divider/>
+								<Spacer y={5}/>
+								<div className="grid grid-cols-3 gap-4">
+									{userRSPV[month].map((e, i) => {
+										return (
+												<Card key={i}>
+													<Spacer y={2}/>
+													<div className="p-4">
+														<h1>{e.title} ({e.date})</h1>
+														<Spacer y={2}/>
+														<Divider/>
+														<Spacer y={2}/>
+														<h2>{e.description}</h2>
+														<Spacer y={4}/>
+														<Button 
+															className="w-full"
+															onPress={(_) => {
+																let rspv = updateRSPV(user, e, "REMOVE")
+																const byMonth = {};
+																rspv.forEach(item => {
+																	const match = item.date.match(/\d+(?=-)/)
+																	let month = match ? parseInt(match[0]) : 0
+																	month = MONTHS[month]
+																	if (!byMonth[month]) {
+																		byMonth[month] = [];
+																	}
+																	byMonth[month].push(item);
+																});
+																setUserRSPV(byMonth)
+															}}>
+																Remove RSPV
+														</Button>
+													</div>
+													<Spacer y={2}/>
+												</Card>
+										)}
+									)}
 								</div>
-								<Spacer y={2}/>
-							</Card>
-						)
-					})}
-				</div>
+								<Spacer y={5}/>
+							</>
+						)}
+					)}
+				</>
 			}
 			{(userRSPV === null || userRSPV.length === 0)&& 
 				<h4>
