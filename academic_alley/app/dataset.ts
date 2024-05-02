@@ -164,7 +164,7 @@ export const People: iPerson[] = [
     id: "person9",
     name: "Valerie Frizzle",
     email: "frizz@uni.edu",
-    type: "Faculty",
+    type: "Faculty"
     department: "Education"
   },
 ]
