@@ -159,7 +159,7 @@ export const Navbar = () => {
             onPress={() => 
               router.push("/rspved")
             }>
-            Events
+            RSPVs
           </Button>
         }
         <NextLink href="/cart" aria-label="cart">
