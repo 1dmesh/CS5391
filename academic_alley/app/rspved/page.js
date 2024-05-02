@@ -55,7 +55,7 @@ export default function Page() {
 							<Card key={i}>
 								<Spacer y={2}/>
 								<div className="p-4">
-									<h1>{e.title} (e.date)</h1>
+									<h1>{e.title} ({e.date})</h1>
 									<Spacer y={2}/>
 									<Divider/>
 									<Spacer y={2}/>
