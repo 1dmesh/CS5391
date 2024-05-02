@@ -33,6 +33,9 @@ export default function CartPage() {
   return (
     <>
       <h1 className={title()}>Checkout</h1>
+      <Spacer y={10}/>
+      <Divider/>
+      <Spacer y={10}/>
       <div className="grid grid-cols-2">
         <div>
           <div className="grid grid-cols-2 gap-4 m-8">
@@ -63,11 +66,13 @@ export default function CartPage() {
             );
           })}
           <div>
-            <Divider></Divider>
+            <Divider/>
             <div className="text-right m-4">Subtotal: ${getSubtotal()}</div>
           </div>
         </div>
       </div>
+      <Spacer y={5}/>
+      <Divider/>
     </>
   );
 }
