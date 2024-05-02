@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import NextLink from "next/link";
 import { title } from "@/components/primitives";
 import CartCard from "./cart-card";
 import { iCartItem } from "../dataset";
-import { Divider } from "@nextui-org/react";
+import { Divider, Button } from "@nextui-org/react";
 import { isTemplateExpression } from "typescript";
 
 export default function CartPage() {
@@ -19,13 +20,11 @@ export default function CartPage() {
     let subtotal: number = 0;
 
     for (const [id, item] of Object.entries(cartData)) {
-      console.log(item)
+      console.log(item);
       subtotal += item.price * item.qty;
     }
 
-    return (
-      <>{subtotal}</>
-    )
+    return <>{subtotal}</>;
   }
 
   return (
@@ -45,8 +44,19 @@ export default function CartPage() {
       ) : (
         <p className="m-8 p-2">Cart is empty.</p>
       )}
-      <Divider></Divider>
-      <div className="m-4 text-right">Subtotal: ${getSubtotal()}</div>
+      {(cartData ? Object.keys(cartData).length : 0) > 0 ? (
+        <>
+          <Divider></Divider>
+          <div className="m-4 text-right">Subtotal: ${getSubtotal()}</div>
+          <div className="flex justify-end m-4">
+            <Button as={NextLink} color="primary" href="/checkout">
+              Proceed to Checkout
+            </Button>
+          </div>
+        </>
+      ) : (
+        <></>
+      )}
     </>
   );
 }
