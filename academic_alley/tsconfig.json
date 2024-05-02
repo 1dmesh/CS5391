@@ -28,6 +28,6 @@
       "@utils/*": ["./utils/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/navbar.js", "app/elections/page.js", "app/events/page.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/navbar.js", "app/elections/page.js", "app/events/page.js", "app/rspved/page.js"],
   "exclude": ["node_modules"]
 }

@@ -23,6 +23,7 @@ import {
   NavbarItem,
   Image,
   Spacer,
+  Divider,
 } from "@nextui-org/react";
 import { onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "next/navigation";
@@ -34,13 +35,10 @@ import { Logo } from "@/components/icons";
 
 import { authInstance, logout as firebaseLogout } from "@/components/firebase";
 
-function UserButton() {
-  const [user, setUser] = React.useState()
-  const router = useRouter()
-  
-  onAuthStateChanged(authInstance(), (u) => {
-    setUser(u)
-  });
+function UserButton({
+  router,
+  user
+}) {
 
   const signin = () => {
     router.push("/signin");
@@ -82,6 +80,13 @@ function UserButton() {
 }
 
 export const Navbar = () => {
+  const router = useRouter()
+  const [user, setUser] = React.useState()
+  
+  onAuthStateChanged(authInstance(), (u) => {
+    setUser(u)
+  });
+
   return (
     <NextUINavbar isBordered maxWidth="2xl" position="sticky">
       <NavbarMenu>
@@ -148,14 +153,24 @@ export const Navbar = () => {
       </NavbarContent>
       <NavbarContent
         className="hidden sm:flex basis-1/5 sm:basis-full"
-        justify="end"
-      >
-        <ThemeSwitch />
-        {/* TODO: cart here */}
+        justify="end">
+        {user != null && 
+          <Button
+            onPress={() => 
+              router.push("/rspved")
+            }>
+            Events
+          </Button>
+        }
         <NextLink href="/cart" aria-label="cart">
           <CartIcon />
         </NextLink>
-        <UserButton />
+        <Spacer x={2}/>
+        <Divider orientation="vertical"/>
+        <Spacer x={2}/>
+        <UserButton router={router} user={user}/>
+        <ThemeSwitch/>
+        <Spacer x={2}/>
       </NavbarContent>
     </NextUINavbar>
   );
