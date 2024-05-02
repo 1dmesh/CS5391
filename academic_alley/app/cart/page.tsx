@@ -5,7 +5,7 @@ import NextLink from "next/link";
 import { title } from "@/components/primitives";
 import CartCard from "./cart-card";
 import { iCartItem } from "../dataset";
-import { Divider, Button } from "@nextui-org/react";
+import { Divider, Button, Spacer } from "@nextui-org/react";
 import { isTemplateExpression } from "typescript";
 
 export default function CartPage() {
@@ -30,6 +30,9 @@ export default function CartPage() {
   return (
     <>
       <h1 className={title()}>Cart</h1>
+      <Spacer y={10}/>
+      <Divider/>
+      <Spacer y={5}/>
       {(cartData ? Object.keys(cartData).length : 0) > 0 ? (
         Object.keys(cartData).map((key, index) => {
           return (
@@ -46,7 +49,8 @@ export default function CartPage() {
       )}
       {(cartData ? Object.keys(cartData).length : 0) > 0 ? (
         <>
-          <Divider></Divider>
+          <Spacer y={10}/>
+          <Divider/>
           <div className="m-4 text-right">Subtotal: ${getSubtotal()}</div>
           <div className="flex justify-end m-4">
             <Button as={NextLink} color="primary" href="/checkout">
