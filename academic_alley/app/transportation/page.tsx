@@ -5,7 +5,7 @@ https://www.flaticon.com/free-icon/bus_1036191
 */
 "use client";
 import React from "react";
-import { Accordion, AccordionItem, Image, Spacer } from "@nextui-org/react";
+import { Accordion, AccordionItem, Divider, Image, Spacer } from "@nextui-org/react";
 import { title } from "@/components/primitives";
 import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/card";
 import AddToCartButton from "@/components/add-to-cart-button";
@@ -51,17 +51,6 @@ function TransportItemCard(transportItem: iTransportItemCard) {
       </CardHeader>
       <CardBody className="overflow-visible py-2">
         <Spacer y={5} />
-        {/* <Divider /> */}
-        {/* <Spacer y={5} /> */}
-        {/* <div className="max-w-full self-center items-center">
-          <Image
-            alt="Card background"
-            className="object-cover rounded-xl"
-            src={image}
-            width={300}
-          />
-        </div> */}
-        {/* <Spacer y={5} /> */}
         <AddToCartButton {...transportItem}></AddToCartButton>
       </CardBody>
     </Card>
@@ -72,10 +61,16 @@ export default function TransportPage() {
   return (
     <div className="min-w-[50%]">
       <h1 className={title()}>Transportation</h1>
-      {/* <Spacer y={10}/> */}
+      <Spacer y={10}/>
+			<h4>
+        Buy a bus ticket or a bus card, you know, to get around.
+			</h4>
+      <Spacer y={10}/>
+      <Divider/>
+      <Spacer y={5}/>
       <Accordion
         variant="bordered"
-        // defaultExpandedKeys={["1"]}
+        defaultExpandedKeys={["1", "2"]}
         // style={{ height: "100%", width: "100%" }}
       >
         <AccordionItem
@@ -92,9 +87,11 @@ export default function TransportPage() {
             />
           }
         >
-          {tickets.map((ticket: iTransportItemCard) => (
-            <TransportItemCard {...ticket} />
-          ))}
+          <div className="grid grid-cols-3">
+            {tickets.map((ticket: iTransportItemCard) => (
+              <TransportItemCard {...ticket} />
+            ))}
+          </div>
         </AccordionItem>
         <AccordionItem
           key="2"
@@ -109,7 +106,9 @@ export default function TransportPage() {
             />
           }
         >
-          <TransportItemCard {...busCard}></TransportItemCard>
+          <div className="grid grid-cols-3">
+            <TransportItemCard {...busCard}></TransportItemCard>
+          </div>
         </AccordionItem>
       </Accordion>
     </div>
