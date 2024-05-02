@@ -39,7 +39,7 @@ export default function CartPage() {
             <Input className="col-span-2" label="Cardholder name" />
             <Input className="col-span-2" label="Card number" />
             {/* <Input label="Expiration" /> */}
-            <DateInput granularity="month" className="py-2 h-14"></DateInput>
+            <DateInput label="Expiration" granularity="month" className="py-2 h-14 m-0 p-0"></DateInput>
             <Input label="CVV" type="password" />
             <Button className="col-span-2" color="primary" onPress={clearCart}>
               Checkout
