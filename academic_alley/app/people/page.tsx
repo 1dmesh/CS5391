@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { title } from "@/components/primitives";
 import { useEffect, useState, ChangeEvent } from "react";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
@@ -41,7 +42,7 @@ function PersonSearch({ defaultValue }: iDefault) {
 
   return (
     <Input
-      // className="m-8 flex justify-center"
+      className="m-8 flex justify-center"
       placeholder="Search..."
       value={inputValue ?? ""}
       onChange={handleChange}
@@ -101,22 +102,20 @@ export default function PeoplePage() {
 
   return (
     <>
-      <h4>
-        TODO: So much! But it probably looks like this? A filter is def needed
-      </h4>
-      <Spacer y={10} />
-      <PersonSearch defaultvalue={searchQuery} />
-      <Spacer y={10} />
+      <h1 className={title()}>Faculty and Student Search</h1>
+      <Spacer y={10}/>
+      <Divider/>
+      <Spacer y={2}/>
+			<div className="flex w-full flex-wrap md:flex-nowrap gap-2">
+        <PersonSearch defaultvalue={searchQuery} />
+      </div>
+      <Spacer y={2} />
       <Divider />
-      <Spacer y={10} />
-      {search.map((person: iPerson) => (
-        <PersonCard {...person} />
-      ))}
-
-      {/* <Spacer y={10} />
-      <Divider />
-      <Spacer y={10} /> */}
-      {/* <Pagination total={10} initialPage={1} /> */}
+      <div className="grid grid-cols-3">
+        {search.map((person: iPerson) => (
+          <PersonCard {...person} />
+        ))}
+      </div>
     </>
   );
 }
