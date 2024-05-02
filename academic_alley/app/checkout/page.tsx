@@ -5,7 +5,7 @@ import NextLink from "next/link";
 import { useRouter } from "next/navigation";
 import { title } from "@/components/primitives";
 import { iCartItem } from "../dataset";
-import { Divider, Button, Input, Spacer } from "@nextui-org/react";
+import { Divider, Button, Input, Spacer, DateInput } from "@nextui-org/react";
 import { isTemplateExpression } from "typescript";
 import { Router } from "next/router";
 import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/card";
@@ -38,7 +38,8 @@ export default function CartPage() {
           <div className="grid grid-cols-2 gap-4 m-8">
             <Input className="col-span-2" label="Cardholder name" />
             <Input className="col-span-2" label="Card number" />
-            <Input label="Expiration" />
+            {/* <Input label="Expiration" /> */}
+            <DateInput granularity="month" className="py-2 h-14"></DateInput>
             <Input label="CVV" type="password" />
             <Button className="col-span-2" color="primary" onPress={clearCart}>
               Checkout
@@ -52,12 +53,14 @@ export default function CartPage() {
                 <CardHeader className="flex-row justify-between">
                   <div className="font-bold text-left">{cart[key].name}</div>
                   <div>
-                    <div className="flex gap-5 text-right">${cart[key].price}</div>
+                    <div className="flex gap-5 text-right">
+                      ${cart[key].price}
+                    </div>
                     <div className="text-right">qty: {cart[key].qty}</div>
                   </div>
                 </CardHeader>
               </Card>
-            )
+            );
           })}
           <div>
             <Divider></Divider>
