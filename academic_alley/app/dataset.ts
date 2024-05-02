@@ -74,3 +74,97 @@ export const textbooks: iTextbook[] = [
     price: 79.95
   }
 ];
+
+export interface iRoommateInfo {
+  moveInDate: Date;
+  gender: "male" | "female" | "nonbinary" | "other";
+  rent: number;
+}
+
+export interface iPerson {
+  id: string;
+  name: string;
+  email: string;
+  type: "Faculty" | "Student";
+  department: string;
+  roommateInfo?: iRoommateInfo | undefined;
+}
+
+export const People: iPerson[] = [
+  {
+    id: "person0",
+    name: "John Doe",
+    email: "johnd@uni.edu",
+    type: "Student",
+    department: "Mathematics",
+    roommateInfo: {
+      moveInDate: new Date("2024-08-25"),
+      gender: "male",
+      rent: 912
+    }
+  },
+  {
+    id: "person2",
+    name: "Jane Doe",
+    email: "jane@uni.edu",
+    type: "Student",
+    department: "Art",
+    roommateInfo: {
+      moveInDate: new Date("2024-08-19"),
+      gender: "female",
+      rent: 856
+    }
+  },
+  {
+    id: "person3",
+    name: "Craig Boone",
+    email: "trex@uni.edu",
+    type: "Faculty"
+    department: "Computer Science",
+  },
+  {
+    id: "person4",
+    name: "Sunny Smiles",
+    email: "goodspringsgal@uni.edu",
+    type: "Student"
+    department: "Engineering",
+  },
+  {
+    id: "person5",
+    name: "Joe Cobb",
+    email: "cobb@uni.edu",
+    type: "Faculty"
+    department: "Engineering",
+  },
+  {
+    id: "person6",
+    name: "Arcade Gannon",
+    email: "gannon@uni.edu",
+    type: "Student",
+    department: "Physics",
+    roommateInfo: {
+      moveInDate: new Date("2024-08-10"),
+      gender: "male",
+      rent: 1219
+    }
+  },
+  {
+    id: "person7",
+    name: "Lily Bowen",
+    email: "bighorn@uni.edu",
+    type: "Student",
+    department: "Biology",
+    roommateInfo: {
+      moveInDate: new Date("2024-08-12"),
+      gender: "female",
+      rent: 789
+    }
+  },
+  {
+    id: "person9",
+    name: "Valerie Frizzle",
+    email: "frizz@uni.edu",
+    type: "Faculty"
+    department: "Education"
+  },
+]
