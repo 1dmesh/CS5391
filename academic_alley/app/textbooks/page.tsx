@@ -38,8 +38,6 @@ export default function TextbooksPage() {
     handleSearch();
   }, [searchQuery]);
 
-  const totalTextbooks = cardData.length;
-
   return (
     <div>
       <h1 className={title()}>Textbooks</h1>

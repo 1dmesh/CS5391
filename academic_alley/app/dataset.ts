@@ -90,7 +90,7 @@ export interface iPerson {
   roommateInfo?: iRoommateInfo | undefined;
 }
 
-export const People: iPerson[] = [
+export const people: iPerson[] = [
   {
     id: "person0",
     name: "John Doe",
@@ -108,7 +108,7 @@ export const People: iPerson[] = [
     name: "Jane Doe",
     email: "jane@uni.edu",
     type: "Student",
-    department: "Art",
+    department: "Art and Design",
     roommateInfo: {
       moveInDate: new Date("2024-08-19"),
       gender: "female",
@@ -119,21 +119,21 @@ export const People: iPerson[] = [
     id: "person3",
     name: "Craig Boone",
     email: "trex@uni.edu",
-    type: "Faculty"
+    type: "Faculty",
     department: "Computer Science",
   },
   {
     id: "person4",
     name: "Sunny Smiles",
     email: "goodspringsgal@uni.edu",
-    type: "Student"
+    type: "Student",
     department: "Engineering",
   },
   {
     id: "person5",
     name: "Joe Cobb",
     email: "cobb@uni.edu",
-    type: "Faculty"
+    type: "Faculty",
     department: "Engineering",
   },
   {
@@ -164,7 +164,7 @@ export const People: iPerson[] = [
     id: "person9",
     name: "Valerie Frizzle",
     email: "frizz@uni.edu",
-    type: "Faculty"
+    type: "Faculty",
     department: "Education"
   },
 ]
