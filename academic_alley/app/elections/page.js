@@ -49,7 +49,7 @@ function VoteSection({
 
 	React.useEffect(() => {
 		setDisabled(user === null || (user != null && electionData.voted.map((c) => c.who).includes(user.email)))
-		setShowResults(user != null && electionData.voted.includes(user.email))
+		setShowResults(user != null && electionData.voted.map((c) => c.who).includes(user.email))
 	}, [user])
 
 	const submit = () => {
