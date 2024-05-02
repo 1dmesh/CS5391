@@ -64,7 +64,7 @@ export default function Page() {
 									<Button 
 										className="w-full"
 										onPress={(_) => 
-											setUserRSPV(updateRSPV(user, e, "REMOVE2"))
+											setUserRSPV(updateRSPV(user, e, "REMOVE"))
 										}>
 											Remove RSPV
 									</Button>

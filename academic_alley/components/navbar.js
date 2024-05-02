@@ -168,8 +168,8 @@ export const Navbar = () => {
         <Spacer x={2}/>
         <Divider orientation="vertical"/>
         <Spacer x={2}/>
-        <UserButton router={router} user={user}/>
         <ThemeSwitch/>
+        <UserButton router={router} user={user}/>
         <Spacer x={2}/>
       </NavbarContent>
     </NextUINavbar>
