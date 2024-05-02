@@ -109,6 +109,7 @@ export default function Page() {
 																	}
 																	byMonth[month].push(item);
 																});
+																console.log(byMonth)
 																setUserRSPV(byMonth)
 															}}>
 																Remove RSPV
@@ -125,7 +126,7 @@ export default function Page() {
 					)}
 				</>
 			}
-			{(userRSPV === null || userRSPV.length === 0)&& 
+			{(userRSPV === null || Object.keys(userRSPV).length === 0)&& 
 				<h4>
 					You have not RSPV'ed to any events :(
 				</h4>
