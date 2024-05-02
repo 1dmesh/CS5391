@@ -9,7 +9,7 @@ import {
 } from "@nextui-org/react";
 import { onAuthStateChanged } from "firebase/auth"
 
-import { authInstance, sendPasswordReset } from "@/components/firebase"
+import { authInstance } from "@/components/firebase"
 import { BorderedInput } from "@/components/inputs";
 
 let userData = {
@@ -93,19 +93,9 @@ export default function Account() {
     },
   ]
 
-  const forgotPassword = (event) => {
-    sendPasswordReset(email)
-    alert("Please check your email for a password reset!")
-  }
-
   const updateInfo = (e) => {
     alert("Information Updated.")
   }
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    // Handle form submission logic here
-  };
 
   return (
     <div className="flex flex-wrap content-center justify-center">
@@ -118,7 +108,7 @@ export default function Account() {
         <Spacer y={10}/>
         <Divider/>
         <Spacer y={20}/>
-        <form className="ml-10 mr-10" onSubmit={handleSubmit}>
+        <div className="ml-10 mr-10">
           <div className="grid grid-cols-2 gap-5">
             {fields.map((field, i) => {
               return (
@@ -133,17 +123,11 @@ export default function Account() {
               <Button
                 color="primary"
                 variant="shadow"
-                onPress={forgotPassword}>
-              Reset Password
-              </Button>
-              <Button
-                color="primary"
-                variant="shadow"
                 onPress={updateInfo}>
               Update
               </Button>
           </div>
-        </form>
+        </div>
         <Spacer y={20}/>
       </Card>
     </div>
