@@ -64,7 +64,7 @@ function RoommateCard(person: iPerson) {
           name={person.name}
           description={person.type + ", " + person.department}
           avatarProps={{
-            src: "https://i.pravatar.cc/150?u=a04258114e29026702d",
+            src: "https://i.pravatar.cc/150?u=" + person.id,
           }}
         />
       </CardHeader>
