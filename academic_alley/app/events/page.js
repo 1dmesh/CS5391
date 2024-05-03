@@ -17,18 +17,18 @@ import { eventData } from "@/app/events/eventData"
 import { updateRSPV } from "@/app/rspv_logic"
 
 const MONTHS = {
-  Jan: '01',
-  Feb: '02',
-  Mar: '03',
-  Apr: '04',
-  May: '05',
-  Jun: '06',
-  Jul: '07',
-  Aug: '08',
-  Sep: '09',
-  Oct: '10',
-  Nov: '11',
-  Dec: '12',
+  January: '1',
+  February: '2',
+  March: '3',
+  April: '4',
+  May: '5',
+  June: '6',
+  July: '7',
+  August: '8',
+  September: '9',
+  October: '10',
+  November: '11',
+  December: '12',
 }
 
 export default function Page() {
